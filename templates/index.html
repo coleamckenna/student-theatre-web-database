@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ metadata.title or "Student Theatre Catalog" }}{% endblock %}
+
+{% block body_class %}index stc-home{% endblock %}
+
+{% block content %}
+<h1>{{ metadata.title or "Student Theatre Catalog" }}</h1>
+
+{% if metadata.description_html %}
+<div class="stc-intro">
+  {{ metadata.description_html | safe }}
+</div>
+{% endif %}
+
+<div class="stc-stats">
+  <div class="stc-stat"><strong>{{ stats.production_count }}</strong> productions</div>
+  <div class="stc-stat"><strong>{{ stats.people_count }}</strong> people</div>
+  <div class="stc-stat"><strong>{{ stats.material_count }}</strong> materials</div>
+  <div class="stc-stat"><strong>{{ stats.file_count }}</strong> linked files</div>
+</div>
+
+<h2>Productions</h2>
+{% set years = homepage_productions | map(attribute='year') | unique | list | sort %}
+{% for year in years %}
+<div class="stc-year-group">
+  <h3>{{ year or "Unknown year" }}</h3>
+  <ul class="stc-card-list">
+    {% for prod in homepage_productions if prod.year == year %}
+    <li><a href="/{{ prod.id }}">{{ prod.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+{% endfor %}
+
+<div class="stc-footer-links">
+  <p>
+    <a href="/{{ catalog_id }}/productions">Browse all tables</a> ·
+    <a href="/about">About</a>
+    {% if contribute_api_url %} · <a href="/contribute">Contribute</a>{% endif %}
+  </p>
+</div>
+{% endblock %}

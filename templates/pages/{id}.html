@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {% if slug_collision %}Slug collision — {% elif not_found %}Not found — {% elif entity %}{{ entity.title or entity.name or entity.first_credited_as or entity_id }} — {% endif %}{{ metadata.title }}
+{% endblock %}
+
+{% block content %}
+{% if slug_collision %}
+  <h1>Slug collision</h1>
+  <p>The slug <code>{{ entity_id }}</code> matches multiple entity types: {{ collision_types | join(", ") }}.</p>
+  <p>Each slug must be unique across productions, people, organisations, and venues. Fix the data source and rebuild the database.</p>
+  <p><a href="/">← Home</a></p>
+{% elif not_found %}
+  <h1>Not found</h1>
+  <p>No record found for <code>{{ entity_id }}</code>.</p>
+  <p><a href="/">← Home</a></p>
+{% else %}
+  {% if entity_type == "production" %}
+    {% include "_entity_production.html" %}
+  {% elif entity_type == "person" %}
+    {% include "_entity_person.html" %}
+  {% elif entity_type == "organisation" %}
+    {% include "_entity_organisation.html" %}
+  {% elif entity_type == "venue" %}
+    {% include "_entity_venue.html" %}
+  {% endif %}
+{% endif %}
+{% endblock %}

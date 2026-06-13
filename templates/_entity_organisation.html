@@ -1,0 +1,18 @@
+<h1>{{ entity.name }}</h1>
+
+<div class="stc-meta">
+  {% if entity.alias %}<p><strong>Also known as:</strong> {{ entity.alias }}</p>{% endif %}
+</div>
+
+{% if productions %}
+<h2>Productions</h2>
+<ul>
+  {% for prod in productions %}
+  <li><a href="/{{ prod.id }}">{{ prod.title }}</a>{% if prod.year %} ({{ prod.year }}){% endif %}</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No productions linked.</p>
+{% endif %}
+
+<p><a href="/">← Home</a></p>

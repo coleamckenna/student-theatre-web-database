@@ -1,0 +1,24 @@
+<h1>{{ entity.name }}</h1>
+
+<div class="stc-meta">
+  {% if entity.campus or entity.city %}
+  <p><strong>Location:</strong>
+    {{ [entity.campus, entity.city, entity.state, entity.country] | select | join(", ") }}
+  </p>
+  {% endif %}
+  {% if entity.capacity %}<p><strong>Capacity:</strong> {{ entity.capacity }}</p>{% endif %}
+  {% if entity.notes %}<p><strong>Notes:</strong> {{ entity.notes }}</p>{% endif %}
+</div>
+
+{% if productions %}
+<h2>Productions</h2>
+<ul>
+  {% for prod in productions %}
+  <li><a href="/{{ prod.id }}">{{ prod.title }}</a>{% if prod.year %} ({{ prod.year }}){% endif %}</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No productions linked.</p>
+{% endif %}
+
+<p><a href="/">← Home</a></p>
