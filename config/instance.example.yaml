@@ -1,0 +1,34 @@
+# Instance configuration for a student-theatre-catalog deployment.
+# Copy to your instance repo as config/instance.yaml
+
+catalog:
+  id: example                    # Datasette database name and URL prefix /{id}/
+  sqlite_file: catalog.sqlite    # Built database filename at repo root
+
+paths:
+  catalog_csv: catalog           # CSV directory relative to instance root
+  metadata: config/metadata.yaml
+  metadata_public: config/metadata.public.yaml
+  content_pages: content/pages
+
+institution:
+  id: example
+  name: "Example University Student Theatre"
+  production_typos: {}
+  stub_venues: {}
+
+site:
+  title: "Example Student Theatre History"
+  source: "https://example.edu/theatre"
+  license: CC-BY-4.0
+  license_url: https://creativecommons.org/licenses/by/4.0/
+
+workers:
+  datasette_name: example-catalog
+  contribute_name: example-contribute
+  allowed_origin: "https://example.edu"
+  email_subject_prefix: "Example Student Theatre History"
+
+theme:
+  css_file: catalog.css
+  css_class_prefix: stc
