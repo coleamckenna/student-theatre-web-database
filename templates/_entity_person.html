@@ -1,0 +1,28 @@
+<h1>{{ entity.first_credited_as }}</h1>
+
+<div class="stc-meta">
+  {% if entity.given_name or entity.family_name %}
+  <p><strong>Name:</strong> {{ entity.given_name or "" }} {{ entity.family_name or "" }}</p>
+  {% endif %}
+</div>
+
+{% if credits %}
+<h2>Credits</h2>
+<table class="stc-table">
+  <thead><tr><th>Production</th><th>Year</th><th>Role</th><th>Credited as</th></tr></thead>
+  <tbody>
+    {% for credit in credits %}
+    <tr>
+      <td><a href="/{{ credit.production_id }}">{{ credit.title }}</a></td>
+      <td>{{ credit.year or "" }}</td>
+      <td>{{ credit.role or "" }}</td>
+      <td>{{ credit.credited_as or "" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No credits recorded.</p>
+{% endif %}
+
+<p><a href="/">← Home</a></p>
