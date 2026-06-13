@@ -8,6 +8,7 @@ PYTHON="${ROOT}/.venv/bin/python"
 
 INSTANCE_CONFIG="${CATALOG_INSTANCE:-$ROOT/config/instance.example.yaml}"
 export CATALOG_INSTANCE="$INSTANCE_CONFIG"
+export PYTHONPATH="$ROOT${PYTHONPATH:+:$PYTHONPATH}"
 
 if [[ ! -x "$PYTHON" ]]; then
   PYTHON="python3"
