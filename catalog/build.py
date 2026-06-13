@@ -48,6 +48,14 @@ def to_int(value) -> int | None:
     except (TypeError, ValueError):
         return None
 
+def to_float(value) -> float | None:
+    if value is None or value == "":
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
 
 def clean(value) -> str | None:
     if value is None:
@@ -68,6 +76,8 @@ def parse_venue_row(row: dict) -> dict | None:
         "city": clean(first_field(row, "City", "city")),
         "state": clean(first_field(row, "State", "state")),
         "country": clean(first_field(row, "Country", "country")),
+        "latitude": to_float(first_field(row, "latitude", "Latitude")),
+        "longitude": to_float(first_field(row, "Longitude", "longitude")),
         "capacity": to_int(first_field(row, "capacity", "Capacity")),
         "notes": clean(first_field(row, "notes", "Notes")),
     }
@@ -330,8 +340,8 @@ def build_from_rows(
     )
 
     conn.executemany(
-        """INSERT INTO venues (id, name, campus, city, state, country, capacity, notes)
-           VALUES (:id, :name, :campus, :city, :state, :country, :capacity, :notes)""",
+        """INSERT INTO venues (id, name, campus, city, state, country, latitude, longitude, capacity, notes)
+           VALUES (:id, :name, :campus, :city, :state, :country, :latitude, :longitude, :capacity, :notes)""",
         venues.values(),
     )
 
