@@ -18,7 +18,6 @@ from config import (  # noqa: E402
     catalog_csv_dir,
     institution,
     load_instance,
-    production_typos,
     sqlite_path,
 )
 from dates import to_iso_date  # noqa: E402
