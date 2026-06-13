@@ -1,0 +1,18 @@
+[project]
+name = "ltst-catalog-worker"
+version = "0.1.0"
+description = "Read-only Datasette catalog on Cloudflare Workers"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "datasette",
+    "jinja2",
+    "markupsafe",
+    "pyyaml",
+]
+
+[dependency-groups]
+dev = [
+    "workers-py",
+    "workers-runtime-sdk",
+]

@@ -1,0 +1,17 @@
+name = "ltst-catalog"
+main = "src/entry.py"
+compatibility_date = "2025-11-02"
+compatibility_flags = ["python_workers", "python_dedicated_snapshot"]
+
+[[rules]]
+type = "Text"
+globs = ["**/*.yaml", "**/*.html", "**/*.css", "**/*.js", "**/*.txt", "**/*.md"]
+fallthrough = true
+
+[[rules]]
+type = "Data"
+globs = ["**/*.sqlite"]
+fallthrough = true
+
+[observability]
+enabled = true
