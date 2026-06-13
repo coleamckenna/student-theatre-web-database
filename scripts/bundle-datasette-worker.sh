@@ -2,6 +2,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+DW="$ROOT/datasette-worker"
 SRC="$DW/src"
 PYTHON="${ROOT}/.venv/bin/python"
 
