@@ -18,7 +18,7 @@ def menu_links(datasette, actor, request):
             {"href": datasette.urls.path(f"/{cid}/productions"), "label": "Browse"},
             {"href": datasette.urls.path("/about"), "label": "About"},
             {
-                "href": datasette.urls.path(f"/{cid}/{cid}"),
+                "href": datasette.urls.path(f"/{cid}/{cid}.db"),
                 "label": "Download data",
             },
         ]
