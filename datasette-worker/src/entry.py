@@ -35,7 +35,7 @@ def _create_datasette() -> Datasette:
         static_mounts=[("static", str(ROOT / "static"))],
         secret="catalog-readonly",
         settings={"num_sql_threads": 0},
-        cors=False,
+        cors=True,
         cache_headers=True,
     )
 
